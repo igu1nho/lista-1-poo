@@ -13,3 +13,5 @@ Para executar digite:
 mvn clean javafx:run
 ```
 
+![Calculador](/images/sv-example.png)
+*Examplo da Tela*
