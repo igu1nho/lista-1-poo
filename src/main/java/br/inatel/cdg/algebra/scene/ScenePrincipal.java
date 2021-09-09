@@ -57,13 +57,13 @@ public class ScenePrincipal {
         btnCalcCoefAngular = new Button("Calcula Coeficiente Angular");
         //Criamos a ação que o botão responderá as ser pressionado
         btnCalcCoefAngular.setOnAction(evento -> {
-            Reta reta = construirReta(Double.parseDouble(txtP1X.getText()), Double.parseDouble(txtP1Y.getText()));
+            Reta reta = construirReta();
             txtCoefAngular.setText("Coef Angular: " + reta.calcCoeficienteAngular());//Acessamos o componente textCoefAngular para colocar o resultado do cálculo
         });
 
         btnCalcCoefLinear = new Button("Calcula Coeficiente Linear");
         btnCalcCoefLinear.setOnAction(evento -> {
-            Reta reta = construirReta(Double.parseDouble(txtP1X.getText()), Double.parseDouble(txtP1Y.getText()));
+            Reta reta = construirReta();
             txtCoefLinear.setText("Coef Linear: " + reta.calcCoeficienteLinear());
         });
 
@@ -83,7 +83,7 @@ public class ScenePrincipal {
     }
 
     //Função interna que cria uma reta!
-    private Reta construirReta(double x, double y){
+    private Reta construirReta(){
         Ponto p1 = new Ponto(Double.parseDouble(txtP1X.getText()),
                 Double.parseDouble(txtP1Y.getText()));
 
