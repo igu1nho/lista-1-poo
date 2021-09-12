@@ -2,18 +2,20 @@ package br.inatel.cdg.algebra.reta;
 
 public class Ponto {
 
-    private double x,y;
+    private double px,py;
 
-    public Ponto(double x, double y){
-        this.x = x;
-        this.y = y;
+    public Ponto(double px, double py){
+        this.px = px;
+        this.py = py;
     }
 
-    public double getX() {
-        return x;
+    public double getX()
+    {
+        return px;
     }
 
-    public double getY() {
-        return y;
+    public double getY()
+    {
+        return py;
     }
 }

@@ -12,69 +12,69 @@ import javafx.stage.Stage;
 
 public class ScenePrincipal {
 
-    private Button btnCalcCoefAngular, btnCalcCoefLinear; //Button representa botoes
-    private Label lblP1X, lblP1Y, lblP2X, lblP2Y; //Label representa rótulos
-    private TextField txtP1X,txtP1Y,txtP2X,txtP2Y, txtCoefAngular, txtCoefLinear; //TextField Representam áreas de texto
+    private Button bttCoefAng, bttCoefLin; //Botoes para realizar o calculo
+    private Label lp1X, lp1Y, lp2X, lp2Y; //Rótulos dos pontos em cada coordenadas x e y
+    private TextField tp1X,tp1Y,tp2X,tp2Y, tCoefAng, tCoefLin; //Campo de texto para as coordenadas e para os coeficientes
 
     public void criaScenePrincipal(Stage stage){
 
         //Criando os labels para os pontos e os campos de texto para os dados
-        lblP1X = new Label("Ponto P1.X"); //rótulos
-        txtP1X = new TextField(); //área de texto
+        lp1X = new Label("Ponto P1 de X"); //rótulos
+        tp1X = new TextField(); //área de texto
 
-        lblP1Y = new Label("Ponto P1.Y");
-        txtP1Y = new TextField();
+        lp1Y = new Label("Ponto P1 de Y");
+        tp1Y = new TextField();
 
-        lblP2X = new Label("Ponto P2.X");
-        txtP2X = new TextField();
+        lp2X = new Label("Ponto P2 de X");
+        tp2X = new TextField();
 
-        lblP2Y = new Label("Ponto P2.Y");
-        txtP2Y = new TextField();
+        lp2Y = new Label("Ponto P2 de Y");
+        tp2Y = new TextField();
 
         //HBox é usado para agrupar elementos horizontalmente
-        HBox hboxP1X = new HBox(lblP1X, txtP1X); //Criamos quatro grupos horizontais com Rótulo e Área de Texto para a coordenada
-        HBox hboxP1Y = new HBox(lblP1Y, txtP1Y);
-        HBox hboxP2X = new HBox(lblP2X, txtP2X);
-        HBox hboxP2Y = new HBox(lblP2Y, txtP2Y);
+        HBox hbp1X = new HBox(lp1X, tp1X); //Cria-se quatro grupos horizontais com Rótulo e Área de Texto para as coordenadas x e y
+        HBox hbp1Y = new HBox(lp1Y, tp1Y);
+        HBox hbp2X = new HBox(lp2X, tp2X);
+        HBox hbp2Y = new HBox(lp2Y, tp2Y);
 
         //VBox é usada para agrupar elementos verticalmente
         //No construtor passamos todos os elementos que serão agrupados
-        VBox vboxEntradaCoord = new VBox(hboxP1X,hboxP1Y,hboxP2X,hboxP2Y);//Aqui vamos agrupar verticalmente os pontos para o usuário entrar com as coordenadas dos pontos
+        VBox vboxEntradaCoord = new VBox(hbp1X,hbp1Y,hbp2X,hbp2Y);//Agrupar-se verticalmente os pontos para o usuário entrar com as coordenadas dos pontos
 
         //Caixas de texto que apresentaremos o resultado
-        txtCoefAngular = new TextField();
-        txtCoefAngular.setEditable(false);//Observe que deixamos "false" para evitar do usuário digitar alguma coisa nessas caixas
-        txtCoefAngular.setText("Coef Angular: ");
+        tCoefAng = new TextField();
+        tCoefAng.setEditable(false);//"false" para evitar que o usuário digite alguma coisa nessas caixas
+        tCoefAng.setText("Coef Angular: ");
 
-        txtCoefLinear = new TextField();
-        txtCoefLinear.setEditable(false);
-        txtCoefLinear.setText("Coef Linear: ");
+        tCoefLin = new TextField();
+        tCoefLin.setEditable(false);
+        tCoefLin.setText("Coef Linear: ");
 
-        //Agrupas as áreas onde apresentaremos o resultado
-        HBox hboxRespostas = new HBox(txtCoefAngular,txtCoefLinear);
+        //Agrupar as áreas onde o resultado será apresentado
+        HBox hboxRespostas = new HBox(tCoefAng,tCoefLin);
 
-        //Criamos o botão
-        btnCalcCoefAngular = new Button("Calcula Coeficiente Angular");
-        //Criamos a ação que o botão responderá as ser pressionado
-        btnCalcCoefAngular.setOnAction(evento -> {
+        //Criando o botão
+        bttCoefAng= new Button("Calcular o Coeficiente Angular");
+        //Criando a ação que o botão responderá ao ser pressionado
+        bttCoefAng.setOnAction(evento -> {
             Reta reta = construirReta();
-            txtCoefAngular.setText("Coef Angular: " + reta.calcCoeficienteAngular());//Acessamos o componente textCoefAngular para colocar o resultado do cálculo
+            tCoefAng.setText("Coef Angular: " + reta.calcCoeficienteAngular());//Acesso do componente tCoefAng para colocar o resultado do cálculo
         });
 
-        btnCalcCoefLinear = new Button("Calcula Coeficiente Linear");
-        btnCalcCoefLinear.setOnAction(evento -> {
+        bttCoefLin = new Button("Calcular o Coeficiente Linear");
+        bttCoefLin.setOnAction(evento -> {
             Reta reta = construirReta();
-            txtCoefLinear.setText("Coef Linear: " + reta.calcCoeficienteLinear());
+            tCoefLin.setText("Coef Linear: " + reta.calcCoeficienteLinear());
         });
 
-        //Agrupamos os botões verticalmente
-        HBox hBoxBotoes = new HBox(btnCalcCoefAngular,btnCalcCoefLinear);
+        //Agrupa-se os botões verticalmente
+        HBox hBoxBot = new HBox(bttCoefAng,bttCoefLin);
 
 
-        //Finalmente criamo o layout vertical final!
-        VBox layoutFinal = new VBox(vboxEntradaCoord,hboxRespostas, hBoxBotoes);
+        //Criação do layout vertical final
+        VBox layoutFinal = new VBox(vboxEntradaCoord,hboxRespostas, hBoxBot);
 
-        //Criamos a Scene
+        //Criando a Scene
         Scene scene = new Scene(layoutFinal, 300 , 200);
 
         stage.setTitle("Software Para Calculos de Álgebra Linear");
@@ -82,13 +82,13 @@ public class ScenePrincipal {
         stage.show();
     }
 
-    //Função interna que cria uma reta!
+    //Função interna que cria uma reta
     private Reta construirReta(){
-        Ponto p1 = new Ponto(Double.parseDouble(txtP1X.getText()),
-                Double.parseDouble(txtP1Y.getText()));
+        Ponto p1 = new Ponto(Double.parseDouble(tp1X.getText()),
+                Double.parseDouble(tp1Y.getText()));
 
-        Ponto p2 = new Ponto(Double.parseDouble(txtP2X.getText()),
-                Double.parseDouble(txtP2Y.getText()));
+        Ponto p2 = new Ponto(Double.parseDouble(tp2X.getText()),
+                Double.parseDouble(tp2Y.getText()));
 
         Reta reta = new Reta(p1,p2);
         return reta;
